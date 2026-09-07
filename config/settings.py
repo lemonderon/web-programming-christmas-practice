@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Register holiday so APP_DIRS and staticfiles discover its templates and CSS.
+    # https://docs.djangoproject.com/en/6.1/ref/settings/#installed-apps
     'holiday',
 ]
 
