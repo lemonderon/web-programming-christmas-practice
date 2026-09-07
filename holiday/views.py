@@ -9,3 +9,8 @@ def is_christmas(request):
         "is_christmas": today.month == 12 and today.day == 25,
     }
     return render(request, "holiday/christmas.html", context)
+
+
+def santa(request):
+    participants = ["Alex", "Morgan", "Sam"]
+    return render(request, "holiday/santa.html", {"participants": participants})

@@ -6,4 +6,5 @@ app_name = "holiday"
 
 urlpatterns = [
     path("", views.is_christmas, name="home"),
+    path("santa/", views.santa, name="santa"),
 ]

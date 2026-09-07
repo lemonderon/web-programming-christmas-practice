@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Is it Christmas?</title>
+    <title>Secret Santa</title>
     <link rel="stylesheet" href="{% static 'holiday/style.css' %}">
 </head>
 <body>
@@ -16,11 +16,17 @@
         </nav>
     </header>
     <main class="page card">
-        <h1>Is it Christmas?</h1>
-        <p class="eyebrow">A date, a view, a little holiday spirit</p>
-        <p class="answer">{% if is_christmas %}Yes{% else %}No{% endif %}</p>
-        <p>Today is {{ today|date:"j F Y" }} in Europe/Kyiv.</p>
-        <p class="muted">Christmas Day is December 25.</p>
+        <p class="eyebrow">The guest list</p>
+        <h1>Secret Santa</h1>
+        <p class="muted">Start with the people sharing this game.</p>
+        <h2>Participants</h2>
+        <ul class="participants">
+            {% for participant in participants %}
+                <li>{{ participant }}</li>
+            {% empty %}
+                <li>No participants yet.</li>
+            {% endfor %}
+        </ul>
     </main>
 </body>
 </html>
