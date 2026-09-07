@@ -5,10 +5,6 @@ from django.utils import timezone
 
 from .forms import ParticipantForm
 
-# Teaching-only state: shared across browsers and lost when the server restarts.
-participants = []
-pairs = []
-
 
 def is_christmas(request):
     today = timezone.localdate()
@@ -30,6 +26,8 @@ def make_pairs(participants):
 
 
 def santa(request):
+    participants = request.session.get("participants", [])
+    pairs = request.session.get("pairs", [])
     action = request.POST.get("action")
     form = ParticipantForm(request.POST if action == "add" else None)
     error = ""
@@ -41,18 +39,20 @@ def santa(request):
                 if any(name.casefold() == person.casefold() for person in participants):
                     form.add_error("name", "That name is already listed. Add a surname.")
                 else:
-                    participants.append(name)
-                    pairs.clear()
+                    # Reassign the key: Django does not detect nested list changes.
+                    # https://docs.djangoproject.com/en/6.1/topics/http/sessions/#when-sessions-are-saved
+                    request.session["participants"] = participants + [name]
+                    request.session["pairs"] = []
                     return redirect("holiday:santa")
         elif action == "draw":
             if len(participants) < 2:
                 error = "Add at least two participants before drawing."
             else:
-                pairs[:] = make_pairs(participants)
+                request.session["pairs"] = make_pairs(participants)
                 return redirect("holiday:santa")
         elif action == "reset":
-            participants.clear()
-            pairs.clear()
+            request.session.pop("participants", None)
+            request.session.pop("pairs", None)
             return redirect("holiday:santa")
         else:
             error = "Choose a valid action."
