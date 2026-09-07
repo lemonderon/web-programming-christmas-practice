@@ -207,3 +207,57 @@ input:focus-visible, button:focus-visible, a:focus-visible {
         grid-template-columns: 1fr 1fr;
     }
 }
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.button-generate {
+    border-color: var(--color-green);
+    background: var(--color-green);
+    color: var(--color-surface);
+}
+
+.button-generate:hover {
+    border-color: var(--color-green-dark);
+    background: var(--color-green-dark);
+}
+
+.secondary {
+    border-color: var(--color-green);
+    background: transparent;
+    color: var(--color-green);
+}
+
+.error {
+    padding: 0.75rem 1rem;
+    border-left: 0.25rem solid var(--color-primary-dark);
+    background: var(--color-primary);
+    color: var(--color-green-dark);
+}
+
+.results {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.participants, .pairs {
+    overflow-wrap: anywhere;
+}
+
+.pairs {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0;
+    list-style: none;
+}
+
+.pairs li {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-surface);
+}

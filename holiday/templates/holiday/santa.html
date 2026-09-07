@@ -6,7 +6,11 @@
     <section class="card">
         <p class="eyebrow">The guest list</p>
         <h1>Secret Santa</h1>
-        <p class="muted">Start with the people sharing this game.</p>
+        <p class="muted">Add your group, then draw a gift-giving circle.</p>
+        <p>The pairs are visible on this page, not sent privately.</p>
+        {% if error %}
+            <p class="error" role="alert">{{ error }}</p>
+        {% endif %}
         <div class="grid">
             <section>
                 <h2>Add a participant</h2>
@@ -25,7 +29,24 @@
                         <li>No participants yet.</li>
                     {% endfor %}
                 </ul>
+                <form class="actions" method="post" action="{% url 'holiday:santa' %}">
+                    {% csrf_token %}
+                    <button class="button-generate" type="submit" name="action" value="draw">Draw pairs</button>
+                    <button class="secondary" type="submit" name="action" value="reset">Reset game</button>
+                </form>
             </section>
         </div>
+        <section class="results">
+            <h2>Gift pairs</h2>
+            {% if pairs %}
+                <ul class="pairs">
+                    {% for giver, receiver in pairs %}
+                        <li><strong>{{ giver }}</strong> gives to <strong>{{ receiver }}</strong></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="muted">Draw after adding at least two participants. Adding a name clears an existing draw.</p>
+            {% endif %}
+        </section>
     </section>
 {% endblock %}
