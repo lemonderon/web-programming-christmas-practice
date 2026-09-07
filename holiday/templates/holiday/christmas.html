@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Is it Christmas?</title>
+</head>
+<body>
+    <main>
+        <h1>Is it Christmas?</h1>
+        <p>{% if is_christmas %}Yes{% else %}No{% endif %}</p>
+        <p>Today is {{ today|date:"j F Y" }} in Europe/Kyiv.</p>
+        <p>Christmas Day is December 25.</p>
+    </main>
+</body>
+</html>
