@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+
+.venv/
+
+# Local development database
+*.sqlite3
+
+staticfiles/
+.DS_Store
