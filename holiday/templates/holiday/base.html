@@ -1,0 +1,22 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Holiday workshop{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'holiday/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="{% url 'holiday:home' %}">Holiday workshop</a>
+        <nav aria-label="Main navigation">
+            <a href="{% url 'holiday:home' %}">Christmas check</a>
+            <a href="{% url 'holiday:santa' %}">Secret Santa</a>
+        </nav>
+    </header>
+    <main class="page">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

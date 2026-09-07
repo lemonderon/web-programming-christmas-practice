@@ -1,26 +1,13 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Is it Christmas?</title>
-    <link rel="stylesheet" href="{% static 'holiday/style.css' %}">
-</head>
-<body>
-    <header class="site-header">
-        <a class="brand" href="{% url 'holiday:home' %}">Holiday workshop</a>
-        <nav aria-label="Main navigation">
-            <a href="{% url 'holiday:home' %}">Christmas check</a>
-            <a href="{% url 'holiday:santa' %}">Secret Santa</a>
-        </nav>
-    </header>
-    <main class="page card">
+{% extends "holiday/base.html" %}
+
+{% block title %}Is it Christmas?{% endblock %}
+
+{% block content %}
+    <section class="card">
         <h1>Is it Christmas?</h1>
         <p class="eyebrow">A date, a view, a little holiday spirit</p>
         <p class="answer">{% if is_christmas %}Yes{% else %}No{% endif %}</p>
         <p>Today is {{ today|date:"j F Y" }} in Europe/Kyiv.</p>
         <p class="muted">Christmas Day is December 25.</p>
-    </main>
-</body>
-</html>
+    </section>
+{% endblock %}

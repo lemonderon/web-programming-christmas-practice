@@ -1,21 +1,9 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Secret Santa</title>
-    <link rel="stylesheet" href="{% static 'holiday/style.css' %}">
-</head>
-<body>
-    <header class="site-header">
-        <a class="brand" href="{% url 'holiday:home' %}">Holiday workshop</a>
-        <nav aria-label="Main navigation">
-            <a href="{% url 'holiday:home' %}">Christmas check</a>
-            <a href="{% url 'holiday:santa' %}">Secret Santa</a>
-        </nav>
-    </header>
-    <main class="page card">
+{% extends "holiday/base.html" %}
+
+{% block title %}Secret Santa{% endblock %}
+
+{% block content %}
+    <section class="card">
         <p class="eyebrow">The guest list</p>
         <h1>Secret Santa</h1>
         <p class="muted">Start with the people sharing this game.</p>
@@ -27,6 +15,5 @@
                 <li>No participants yet.</li>
             {% endfor %}
         </ul>
-    </main>
-</body>
-</html>
+    </section>
+{% endblock %}
