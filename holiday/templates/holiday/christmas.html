@@ -1,16 +1,19 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Is it Christmas?</title>
+    <link rel="stylesheet" href="{% static 'holiday/style.css' %}">
 </head>
 <body>
-    <main>
+    <main class="page card">
         <h1>Is it Christmas?</h1>
-        <p>{% if is_christmas %}Yes{% else %}No{% endif %}</p>
+        <p class="eyebrow">A date, a view, a little holiday spirit</p>
+        <p class="answer">{% if is_christmas %}Yes{% else %}No{% endif %}</p>
         <p>Today is {{ today|date:"j F Y" }} in Europe/Kyiv.</p>
-        <p>Christmas Day is December 25.</p>
+        <p class="muted">Christmas Day is December 25.</p>
     </main>
 </body>
 </html>
