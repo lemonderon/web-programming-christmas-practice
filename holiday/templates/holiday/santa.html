@@ -7,13 +7,25 @@
         <p class="eyebrow">The guest list</p>
         <h1>Secret Santa</h1>
         <p class="muted">Start with the people sharing this game.</p>
-        <h2>Participants</h2>
-        <ul class="participants">
-            {% for participant in participants %}
-                <li>{{ participant }}</li>
-            {% empty %}
-                <li>No participants yet.</li>
-            {% endfor %}
-        </ul>
+        <div class="grid">
+            <section>
+                <h2>Add a participant</h2>
+                <form method="post" action="{% url 'holiday:santa' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" name="action" value="add">Add participant</button>
+                </form>
+            </section>
+            <section>
+                <h2>Participants ({{ participants|length }})</h2>
+                <ul class="participants">
+                    {% for participant in participants %}
+                        <li>{{ participant }}</li>
+                    {% empty %}
+                        <li>No participants yet.</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
     </section>
 {% endblock %}
